@@ -24,6 +24,7 @@ function App() {
     },
   ]);
   const [currentCategory, setCurrentCategory] = useState(categories[0]);
+  const [contactSelected, setContactSelected] = useState(false);
 
   return (
     <div>
@@ -31,11 +32,22 @@ function App() {
       categories = {categories}
       setCurrentCategory={setCurrentCategory}
       currentCategory={currentCategory}
+      contactSelected = {contactSelected}
+      setContactSelected = {setContactSelected}
       ></Nav>
       <main>
-        <ContactForm></ContactForm>
-        <Gallery currentCategory={currentCategory}></Gallery>
-        <About></About>
+      {/* Conditionally Render these components once ContactForm is true or false. */}
+      {!contactSelected ? (
+        // React Fragments enclosed around the Gallery and About component.
+        // Although in JSX you can only return a single parent element, this rule
+        // can be satisfied by wrapping the children components in a React fragment.
+        <>
+          <Gallery currentCategory={currentCategory}></Gallery>
+          <About></About>
+        </>
+      ) : (
+          <ContactForm></ContactForm>
+        )}
       </main>
     </div>
   );
