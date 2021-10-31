@@ -105,14 +105,14 @@ function PhotoList({category}) {
 
     const toggleModal = (image, i) => {
         setCurrentPhoto({...image, index: i});
-        setIsModalOpen(true);
+        setIsModalOpen(!isModalOpen);
     };
     
     // If you are using "create react app", adding.default after require works fine, 
     // it sets all images dynamically from local image folder.
     return (
         <div>
-            {isModalOpen && <Modal currentPhoto={currentPhoto}/>}
+            {isModalOpen && (<Modal currentPhoto={currentPhoto} onClose={toggleModal}/>)}
             <div className="flex-row">
                 {currentPhotos.map((image, i) => (
                     <img 
