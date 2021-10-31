@@ -11,6 +11,8 @@ const categories = [
 ]
 const mockCurrentCategory = jest.fn();
 const mockSetCurrentCategory = jest.fn();
+const mockContactSelected = jest.fn();
+const mockSetContactSelected = jest.fn();
 
 describe('Nav component with passed in props', () => {
   // baseline test
@@ -19,6 +21,8 @@ describe('Nav component with passed in props', () => {
     categories = {categories}
     setCurrentCategory = {mockSetCurrentCategory}
     currentCategory = {mockCurrentCategory}
+    contactSelected = {mockContactSelected}
+    setContactSelected = { mockSetContactSelected}
     />);
   });
 
@@ -28,6 +32,8 @@ describe('Nav component with passed in props', () => {
     categories = {categories}
     setCurrentCategory = {mockSetCurrentCategory}
     currentCategory = {mockCurrentCategory}
+    contactSelected = {mockContactSelected}
+    setContactSelected = { mockSetContactSelected}
     />);
     // assert value comparison
     expect(asFragment()).toMatchSnapshot();
@@ -37,10 +43,12 @@ describe('Nav component with passed in props', () => {
 describe('emoji is visible', () => {
     it('inserts emoji into the h2', () => {
         // Arrange
-    const { getByLabelText } =  render(<Nav 
+    const { getByLabelText } = render(<Nav 
     categories = {categories}
     setCurrentCategory = {mockSetCurrentCategory}
     currentCategory = {mockCurrentCategory}
+    contactSelected = {mockContactSelected}
+    setContactSelected = { mockSetContactSelected}
     />);
 
         // Assert  
@@ -56,6 +64,8 @@ describe('links are visible', () => {
     categories = {categories}
     setCurrentCategory = {mockSetCurrentCategory}
     currentCategory = {mockCurrentCategory}
+    contactSelected = {mockContactSelected}
+    setContactSelected = { mockSetContactSelected}
     />);
         // Assert
          expect(getByTestId('link')).toHaveTextContent('Oh Snap!');

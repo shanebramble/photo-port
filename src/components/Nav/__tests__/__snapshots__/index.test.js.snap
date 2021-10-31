@@ -24,7 +24,7 @@ exports[`Nav component with passed in props matches snapshot 1`] = `
         class="flex-row"
       >
         <li
-          class="mx-2"
+          class="mx-2 navActive"
         >
           <a
             data-testid="about"
