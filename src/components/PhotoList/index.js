@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Modal from '../Modal';
 
 function PhotoList({category}) {
     const [photos] = useState([
@@ -98,17 +99,28 @@ function PhotoList({category}) {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricie',
         },
     ]);
+    const [currentPhoto, setCurrentPhoto] = useState();
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const currentPhotos = photos.filter((photo) => photo.category === category);
+
+    const toggleModal = (image, i) => {
+        setCurrentPhoto({...image, index: i});
+        setIsModalOpen(true);
+    };
     
     // If you are using "create react app", adding.default after require works fine, 
     // it sets all images dynamically from local image folder.
     return (
         <div>
+            {isModalOpen && <Modal currentPhoto={currentPhoto}/>}
             <div className="flex-row">
                 {currentPhotos.map((image, i) => (
-                    <img src={require(`../../assets/small/${category}/${i}.jpg`).default} alt={image.name}
+                    <img 
+                        src={require(`../../assets/small/${category}/${i}.jpg`).default} 
+                        alt={image.name}
                         className="img-thumbnail mx-1"
                         key={image.name}
+                        onClick={()=> toggleModal(image, i)}
                     />
                 ))}
             </div>
